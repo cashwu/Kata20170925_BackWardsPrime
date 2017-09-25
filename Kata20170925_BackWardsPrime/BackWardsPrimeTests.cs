@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,6 +31,12 @@ namespace Kata20170925_BackWardsPrime
             BackwardsPrimeShouldBe("9923 9931 9941 9967", 9900, 10000);
         }
 
+        [TestMethod]
+        public void input_100_200_should_return_107_113_149_157_167_179_199()
+        {
+            BackwardsPrimeShouldBe("107 113 149 157 167 179 199", 100, 200);
+        }
+
         private static void BackwardsPrimeShouldBe(string expected, long start, long end)
         {
             var backWardsPrime = new BackWardsPrime();
@@ -48,23 +52,19 @@ namespace Kata20170925_BackWardsPrime
             return string.Join(" ", IsBackwardsPrime(start, end));
         }
 
-        private IEnumerable<long> IsBackwardsPrime(long start, long end)
+        private static IEnumerable<long> IsBackwardsPrime(long start, long end)
         {
-            for (var i = start; i <= end; i++)
+            for (var num = start; num <= end; num++)
             {
-                if (IsPrime(i) && IsPrime(BackWards(i)) && IsNotPalindromes(i))
+                var backWards = BackWards(num);
+                if (backWards != num && IsPrime(num) && IsPrime(backWards))
                 {
-                    yield return i;
+                    yield return num;
                 }
             }
         }
 
-        private bool IsNotPalindromes(long num)
-        {
-            return num.ToString().Distinct().Count() != 1;
-        }
-
-        private long BackWards(long num)
+        private static long BackWards(long num)
         {
             return long.Parse(string.Concat(num.ToString().Reverse()));
         }
