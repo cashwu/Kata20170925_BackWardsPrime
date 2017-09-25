@@ -77,7 +77,8 @@ namespace Kata20170925_BackWardsPrime
                 return false;
             }
 
-            for (var i = 2; i <= Math.Sqrt(num); i++)
+            var sqrtNum = Math.Sqrt(num);
+            for (var i = 2; i <= sqrtNum; i++)
             {
                 if (num % i == 0)
                 {
