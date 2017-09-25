@@ -27,6 +27,12 @@ namespace Kata20170925_BackWardsPrime
             BackwardsPrimeShouldBe("13 17 31 37 71 73 79 97", 1, 100);
         }
 
+        [TestMethod]
+        public void input_9900_10000_should_return_9923_9931_9941_9967()
+        {
+            BackwardsPrimeShouldBe("9923 9931 9941 9967", 9900, 10000);
+        }
+
         private static void BackwardsPrimeShouldBe(string expected, long start, long end)
         {
             var backWardsPrime = new BackWardsPrime();
