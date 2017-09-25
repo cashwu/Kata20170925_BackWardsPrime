@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -76,9 +77,9 @@ namespace Kata20170925_BackWardsPrime
                 return false;
             }
 
-            for (var j = 2; j < num; j++)
+            for (var i = 2; i <= Math.Sqrt(num); i++)
             {
-                if (num % j == 0)
+                if (num % i == 0)
                 {
                     return false;
                 }
