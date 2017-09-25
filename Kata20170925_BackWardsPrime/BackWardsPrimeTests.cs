@@ -16,9 +16,15 @@ namespace Kata20170925_BackWardsPrime
         }
 
         [TestMethod]
-        public void input_2_20_should_return_empty()
+        public void input_2_20_should_return_13_17()
         {
             BackwardsPrimeShouldBe("13 17", 2, 20);
+        }
+
+        [TestMethod]
+        public void input_1_100_should_return_13_17_31_37_71_73_79_97()
+        {
+            BackwardsPrimeShouldBe("13 17 31 37 71 73 79 97", 1, 100);
         }
 
         private static void BackwardsPrimeShouldBe(string expected, long start, long end)
@@ -33,16 +39,18 @@ namespace Kata20170925_BackWardsPrime
     {
         public string backwardsPrime(long start, long end)
         {
-            var result = new List<long>();
+            return string.Join(" ", IsBackwardsPrime(start, end));
+        }
+
+        private IEnumerable<long> IsBackwardsPrime(long start, long end)
+        {
             for (var i = start; i <= end; i++)
             {
                 if (IsPrime(i) && IsPrime(BackWards(i)) && IsNotPalindromes(i))
                 {
-                    result.Add(i);
+                    yield return i;
                 }
             }
-
-            return string.Join(" ", result);
         }
 
         private bool IsNotPalindromes(long num)
